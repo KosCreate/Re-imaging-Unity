@@ -6,19 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="c95c5c87-15ff-4590-a8d0-cebee57c378d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Third_Person_Controller/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Third_Person_Controller/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Fast Run.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Fast Run.fbx.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Female-Pirate-Anim-Controller.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Female-Pirate-Anim-Controller.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Pirate By P. Konstantinov@Falling Idle.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Pirate By P. Konstantinov@Falling Idle.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Pirate By P. Konstantinov@Falling To Landing.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Pirate By P. Konstantinov@Falling To Landing.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Pirate By P. Konstantinov@Fast Run.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Pirate By P. Konstantinov@Fast Run.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Pirate By P. Konstantinov@Idle.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Pirate By P. Konstantinov@Idle.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Pirate By P. Konstantinov@Jumping Up.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Pirate By P. Konstantinov@Jumping Up.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Pirate By P. Konstantinov@Walking.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Pirate By P. Konstantinov@Walking.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Idle.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Idle.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Walking.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Walking.fbx.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/OutdoorsScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/OutdoorsScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" afterDir="false" />
     </list>
@@ -29,6 +23,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/EquipSystem.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 4
@@ -103,7 +100,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1739798362471</updated>
-      <workItem from="1739798363776" duration="3881000" />
+      <workItem from="1739798363776" duration="9796000" />
     </task>
     <servers />
   </component>

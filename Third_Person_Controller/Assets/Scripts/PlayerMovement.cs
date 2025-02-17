@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour {
     private float _verticalVelocity;
     private float _currentSpeed;
     private float _currentRollSpeed;
-    
+
     private float _targetSpeed;
     private bool _isRunning;
     private float _currentTransitionTime;
@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour {
     private bool IsRunning => Input.GetKey(KeyCode.LeftShift);
 
     private bool _rolling;
+    private Vector3 _rollDirection;
 
     private void Awake() {
         _characterController = GetComponent<CharacterController>();
@@ -52,7 +53,7 @@ public class PlayerMovement : MonoBehaviour {
         } else {
             HandleRolling();
         }
-        
+
         UpdateAnimationParameters();
     }
 
@@ -60,12 +61,22 @@ public class PlayerMovement : MonoBehaviour {
         _currentSpeed = 0.0f;
         _targetSpeed = 0.0f;
         float moveStep = _currentRollSpeed * Time.deltaTime;
-        _characterController.Move(transform.forward * moveStep);
+
+        Vector3 targetPosition = _rollDirection * moveStep;
+        _characterController.Move(targetPosition);
+
+        // Rotate the player to face the rolling direction
+        if (_rollDirection != Vector3.zero) {
+            Quaternion targetRotation = Quaternion.LookRotation(_rollDirection);
+            targetRotation.x = 0.0f;
+            targetRotation.z = 0.0f;
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
     }
 
     private void Movement() {
         GroundMovement();
-        Turn();
+        UpdateTurn();
     }
 
     private void GroundMovement() {
@@ -93,15 +104,16 @@ public class PlayerMovement : MonoBehaviour {
         _characterController.Move(move * Time.deltaTime);
     }
 
-    private void Turn() {
+    private void UpdateTurn() {
         if (!IsMoving) return;
-
         Vector3 currentRotation = _characterController.velocity.normalized;
         currentRotation.y = 0.0f;
         currentRotation.Normalize();
 
-        Quaternion targetRotation = Quaternion.LookRotation(currentRotation);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        if (currentRotation != Vector3.zero) {
+            Quaternion targetRotation = Quaternion.LookRotation(currentRotation);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
     }
 
     private float VerticalForceCalculation() {
@@ -150,6 +162,7 @@ public class PlayerMovement : MonoBehaviour {
         Debug.Log("StartRolling");
         _currentRollSpeed = IsRunning ? runningRollSpeed : rollSpeed;
         _rolling = true;
+        _rollDirection = cameraTransform.forward.normalized;
     }
 
     public void StopRolling() {
