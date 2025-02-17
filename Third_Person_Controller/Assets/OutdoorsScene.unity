@@ -867,7 +867,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2106297684}
 --- !u!33 &1282826162
@@ -6278,7 +6278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcf80cb4e0bb4442aa71002e820cdc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  movementSpeed: 4
   runningMovementSpeed: 10
   speedTransitionTime: 3
   rotationSpeed: 10
@@ -6289,7 +6289,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  groundCheckRadius: 0.1
+  groundCheckRadius: 0.12
+  rollSpeed: 5
+  runningRollSpeed: 7
 --- !u!95 &1401930550
 Animator:
   serializedVersion: 7
@@ -6399,7 +6401,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823688464}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2534014, y: -0.000000022431864, z: 0.0000000058760534, w: 0.9673612}
+  m_LocalRotation: {x: 0.25340134, y: 0.000000013705492, z: -0.000000003590169, w: 0.9673613}
   m_LocalPosition: {x: 0, y: 3.25, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6888,7 +6890,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972226882}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25340137, y: -0.000000022431863, z: 0.0000000058760503, w: 0.9673613}
+  m_LocalRotation: {x: 0.25340134, y: 0.000000015824682, z: -0.00000001168019, w: 0.9673613}
   m_LocalPosition: {x: 0, y: 3.25, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
