@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c95c5c87-15ff-4590-a8d0-cebee57c378d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Third_Person_Controller/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Third_Person_Controller/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Fast Run.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Fast Run.fbx.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Female-Pirate-Anim-Controller.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Female-Pirate-Anim-Controller.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Idle.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Idle.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Walking.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Walking.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/OutdoorsScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/OutdoorsScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +91,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1739798362471</updated>
-      <workItem from="1739798363776" duration="9796000" />
+      <workItem from="1739798363776" duration="10059000" />
     </task>
     <servers />
   </component>
