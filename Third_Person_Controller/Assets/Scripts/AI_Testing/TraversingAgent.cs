@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using AI_Testing;
 using Pathfinding;
 using UnityEngine;
 
@@ -7,20 +9,25 @@ public class TraversingAgent : MonoBehaviour {
         Obstacle, Wall
     }
     
-    private static readonly int TraversingCliff = Animator.StringToHash("IsInCliff");
+    private static readonly int TraversingCliffDownwards = Animator.StringToHash("ShouldClimbDownCliff");
+    private static readonly int StartTraversingCliffDownwards = Animator.StringToHash("StartTraversingDown");
+    private static readonly int TraversingCliffUpWards = Animator.StringToHash("ShouldClimbUpWall");
+    private static readonly int JumpOverObstacle = Animator.StringToHash("OverObstacle");
     private static readonly int WalkingHash = Animator.StringToHash("Walking");
+    private static readonly int WonHash = Animator.StringToHash("Victory");
 
     [Header("Climb Down Cliff Configs")]
     [SerializeField] private Transform groundChecker;
+    [SerializeField] private LayerMask cliffDetectionLayers;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float groundCheckRadius;
     [SerializeField] private float cliffCheckForwardMultiplier;
     [SerializeField] private float cliffAllowableDistance;
 
-    [Header("Climb Up Cliff Configs")]
-    [SerializeField] private LayerMask wallLayer;
-    [SerializeField] private float wallCheckDistance;
-    [SerializeField] private float obstacleHeight;
+    [Header("Obstacle Detection Configs")]
+    [SerializeField] private LayerMask obstacleLayer;
+    [SerializeField] private float obstacleCheckDistance = 3.0f;
+    [SerializeField] private float climbeableObstacleHeight = 1.5f;
     [SerializeField] private AnimationCurve climbingCurve;
     
     [Header("Obstacle Configs")]
@@ -45,17 +52,23 @@ public class TraversingAgent : MonoBehaviour {
     private bool _downACliff;
     private bool _detectedWallOrObstacle;
     private bool _reachedObstacle;
-    private bool _traversingObstacle;
+    
     private Vector3 _obstacleHitPosition;
     private Vector3 _overObstaclePosition;
+    
+    private Vector3 _wallHitPosition;
+    private Vector3 _wallDestinationPosition;
     
     private ObstacleClass _obstacleClass;
     
     private bool _reachedCliffStartingPosition;
     
     private Animator _animator;
-    private Vector3 _approachDirection; // Track the direction towards the cliff edge
+    private Vector3 _approachDirection;
 
+    private Obstacle _currentObstacle;
+
+    private bool _endLevel;
 
     private void Awake() {
         _followerEntity = GetComponent<FollowerEntity>();
@@ -69,16 +82,27 @@ public class TraversingAgent : MonoBehaviour {
     }
 
     private void HandleClimbingDownwards() {
+        if (_endLevel) return;
         CheckDownCliffs();
 
          if (_followerEntity.enabled) {
              _animator.SetBool(WalkingHash, _followerEntity.remainingDistance > 1f);
          }
+
+         if (_followerEntity.remainingDistance <= 1) {
+             StartCoroutine(WaitAndEndLevel());
+             _endLevel = true;
+         }
+    }
+
+    private IEnumerator WaitAndEndLevel() {
+        yield return new WaitForSeconds(2f);
+        _animator.SetTrigger(WonHash);
     }
 
     private void CheckForJumpObstacles() {
         _obstacleCheckTuple = DetectingWall();
-
+        
         if (_detectedWallOrObstacle) {
             switch (_obstacleClass) {
                 case ObstacleClass.Obstacle:
@@ -98,55 +122,89 @@ public class TraversingAgent : MonoBehaviour {
             _detectedWallOrObstacle = false;
             return;
         }
+
+        if (_obstacleCheckTuple.Item1.collider.GetComponent<Obstacle>().Traversed) {
+            _detectedWallOrObstacle = false;
+            return;
+        }
         
         var hit = _obstacleCheckTuple.Item1;
         
-        _detectedWallOrObstacle = true;
-        
         var obstacleCollider = hit.collider;
+        Debug.Log($"-- OBSTACLE HEIGHT : {obstacleCollider.bounds.size.y} --");
+        _obstacleClass = obstacleCollider.bounds.size.y >= climbeableObstacleHeight ? ObstacleClass.Wall : ObstacleClass.Obstacle;
+
+        if (_obstacleClass == ObstacleClass.Obstacle) {
+            _obstacleHitPosition = hit.point;
+            _overObstaclePosition = obstacleCollider.bounds.center + obstacleCollider.transform.forward * 1.5f;
+        }
+        else {
+            _wallHitPosition = hit.point;
+            _wallHitPosition.z -= 0.5f;
+            _wallDestinationPosition = new Vector3(_wallHitPosition.x, _wallHitPosition.y + obstacleCollider.bounds.size.y, _wallHitPosition.z);
+        }
         
-        _obstacleClass = obstacleCollider.bounds.size.y > obstacleHeight ? ObstacleClass.Wall : ObstacleClass.Obstacle;
-        _obstacleHitPosition = hit.point;
-        _overObstaclePosition = obstacleCollider.bounds.center + obstacleCollider.transform.forward;
-        _traversingObstacle = true;
+        _currentObstacle = obstacleCollider.GetComponent<Obstacle>();
+        _detectedWallOrObstacle = true;
     }
     
     private void TraverseObstacle() {
         _followerEntity.enabled = false;
 
         if (!_reachedObstacle) {
-            transform.position = Vector3.MoveTowards(transform.position, _obstacleHitPosition, 4 * Time.deltaTime);
-
-            if (Vector3.Distance(transform.position, _obstacleHitPosition) < 0.001f) {
+            var obstacleTarget = _obstacleHitPosition;
+            obstacleTarget.z -= 0.5f;
+            MoveToPosition(obstacleTarget, () => {
                 _reachedObstacle = true;
                 _jumpStartPosition = transform.position;
-                _jumpTargetPosition = _overObstaclePosition + transform.forward * obstacleClearance;
+                // Adjust jump to go towards the agent's facing direction instead of the obstacle's forward direction
+                _jumpTargetPosition = transform.position + transform.forward * (Vector3.Distance(transform.position, _overObstaclePosition) + obstacleClearance);
                 _jumpProgress = 0f;
-            
-                transform.LookAt(_jumpTargetPosition);
-            }
+                _animator.SetTrigger(JumpOverObstacle);
+            });
         }
         else {
             _jumpProgress += Time.deltaTime / jumpDuration;
-        
+
             Vector3 horizontalPos = Vector3.Lerp(_jumpStartPosition, _jumpTargetPosition, _jumpProgress);
-        
+
             float verticalOffset = climbingCurve.Evaluate(_jumpProgress) * jumpHeight;
-        
+
             Vector3 newPosition = new Vector3(horizontalPos.x, _jumpStartPosition.y + verticalOffset, horizontalPos.z);
             transform.position = newPosition;
 
             if (_jumpProgress >= 1f) {
-                _traversingObstacle = false;
+                _currentObstacle.Traversed = true;
                 _detectedWallOrObstacle = false;
-                _reachedObstacle = false;
                 _followerEntity.enabled = true;
+                _reachedObstacle = false;
             }
         }
     }
 
     private void ClimbUpWall() {
-        Debug.Log("SHOULD CLIMB WALL");
+        _followerEntity.enabled = false;
+
+        if (!_reachedObstacle) {
+            MoveToPosition(_wallHitPosition, () => {
+                // Rotate the agent to face the wall before climbing
+                Vector3 directionToWall = (_wallHitPosition - transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(directionToWall, Vector3.up);
+                transform.rotation = lookRotation;
+
+                _animator.SetBool(TraversingCliffUpWards, true);
+                _reachedObstacle = true;
+            });
+        }
+        else {
+            MoveToVerticalPosition(_wallDestinationPosition, () => {
+                _animator.SetBool(TraversingCliffUpWards, false);
+                _reachedObstacle = false;
+                _detectedWallOrObstacle = false;
+                _currentObstacle.Traversed = true;
+                _followerEntity.enabled = true; 
+            });
+        }
     }
 
     private void CheckDownCliffs() {
@@ -163,7 +221,7 @@ public class TraversingAgent : MonoBehaviour {
         
         if (Mathf.Abs(transform.position.y - hit.point.y) > cliffAllowableDistance) {
             _cliffDestinationPosition = hit.point;
-            _currentTargetPosition = ForwardDirectionVector + new Vector3(0, 0, 0.5f);
+            _currentTargetPosition = ForwardDirectionVector + (Vector3.forward * 0.5f);
             _approachDirection = (_currentTargetPosition - transform.position).normalized;
             _reachedCliffStartingPosition = false;
             _animator.SetBool(WalkingHash, false);
@@ -175,40 +233,54 @@ public class TraversingAgent : MonoBehaviour {
         _followerEntity.enabled = false;
         
         if (!_reachedCliffStartingPosition) {
-            transform.position = Vector3.MoveTowards(transform.position, _currentTargetPosition, 4 * Time.deltaTime);
-            
-            if (Vector3.Distance(transform.position, _currentTargetPosition) < 0.001f) {
+            MoveToPosition(_currentTargetPosition, () => {
                 Quaternion lookRotation = Quaternion.LookRotation(-_approachDirection, Vector3.up);
                 transform.rotation = lookRotation;
-                _animator.SetBool(TraversingCliff, true);
+                _animator.SetTrigger(StartTraversingCliffDownwards);
+                _animator.SetBool(TraversingCliffDownwards, true);
                 _reachedCliffStartingPosition = true;
-            }    
+            });
         }
-        else {
-            Vector3 targetPosition = new Vector3(transform.position.x, _cliffDestinationPosition.y, transform.position.z);
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 1 * Time.deltaTime);
-            
-            if (Mathf.Abs(transform.position.y - _cliffDestinationPosition.y) < 0.1f) {
+        else
+        {
+            MoveToVerticalPosition(_cliffDestinationPosition, () => {
                 _downACliff = false;
                 _reachedCliffStartingPosition = false;
-                _animator.SetBool(TraversingCliff, false);
+                _animator.SetBool(TraversingCliffDownwards, false);
+                _animator.ResetTrigger(StartTraversingCliffDownwards);
                 _followerEntity.enabled = true;
-            }
+            });
         }
     }
-
+    
     private bool IsGrounded() {
         return Physics.CheckSphere(groundChecker.position, groundCheckRadius, groundLayer);
     }
 
     private Tuple<RaycastHit, bool> DetectingCliff() {
-        bool hits = Physics.Raycast(ForwardDirectionVector, Vector3.down, out var hit, Mathf.Infinity, groundLayer);
+        bool hits = Physics.Raycast(transform.up + ForwardDirectionVector, Vector3.down, out var hit, Mathf.Infinity, cliffDetectionLayers);
+        
+        if (hits && hit.collider.gameObject.layer != LayerMask.NameToLayer("Ground") || _detectedWallOrObstacle) {
+            return new Tuple<RaycastHit, bool>(hit, false);
+        }
+        
         return new Tuple<RaycastHit, bool>(hit, hits);
     }
 
     private Tuple<RaycastHit, bool> DetectingWall() {
-        bool hits = Physics.Raycast(origin: OriginPosition,transform.forward, out var hit, wallCheckDistance, wallLayer);
+        bool hits = Physics.Raycast(origin: OriginPosition,transform.forward, out var hit, obstacleCheckDistance, obstacleLayer);
         return new Tuple<RaycastHit, bool>(hit, hits);
+    }
+    
+    private void MoveToPosition(Vector3 target, Action onReached = null, float speed = 4f) {
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        if (Vector3.Distance(transform.position, target) < 0.001f) onReached?.Invoke();
+    }
+    
+    private void MoveToVerticalPosition(Vector3 target, Action onReached = null, float speed = 1f) {
+        var targetPosition = new Vector3(transform.position.x, target.y, transform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        if (Mathf.Abs(transform.position.y - target.y) < 0.1) onReached?.Invoke();
     }
     
     private void OnDrawGizmos() {
@@ -216,10 +288,19 @@ public class TraversingAgent : MonoBehaviour {
         var wallCheckTuple = DetectingWall();
         
         Gizmos.color = wallCheckTuple.Item2 ? Color.green : Color.red;
-        Gizmos.DrawLine(OriginPosition, OriginPosition + transform.forward * wallCheckDistance);
+        Gizmos.DrawLine(OriginPosition, OriginPosition + transform.forward * obstacleCheckDistance);
         
         Gizmos.color = cliffCheckTuple.Item2 ? Color.green : Color.red;
-        Gizmos.DrawLine(ForwardDirectionVector, ForwardDirectionVector + Vector3.down * 100.0f);
+        Gizmos.DrawLine(transform.up + ForwardDirectionVector, ForwardDirectionVector + Vector3.down * 100.0f);
+        
+        if (cliffCheckTuple.Item2) {
+            Gizmos.DrawSphere(cliffCheckTuple.Item1.point, 0.1f);
+        }
+        
+        if (_detectedWallOrObstacle) {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(_wallDestinationPosition, _obstacleClass == ObstacleClass.Wall ? 1 : 0.0f);
+        }
         
         if (groundChecker == null) return;
         Gizmos.color = IsGrounded() ? Color.green : Color.red;
