@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
@@ -20,6 +23,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float groundCheckRadius = 0.1f;
     [SerializeField] private float rollSpeed = 10.0f;
     [SerializeField] private float runningRollSpeed = 8.0f;
+    [SerializeField] private float allowableRollingBufferTime = 1.0f;
 
     private float _moveInput;
     private float _turnInput;
@@ -37,10 +41,13 @@ public class PlayerMovement : MonoBehaviour {
     private bool IsMoving => _moveInput != 0 || _turnInput != 0;
     private bool RequestedRoll => Input.GetKeyDown(KeyCode.Q);
     private bool IsRunning => Input.GetKey(KeyCode.LeftShift);
-
+    
     private bool _rolling;
     private Vector3 _rollDirection;
 
+    private float _rollTime;
+    private bool _bufferedRoll;
+    
     private void Awake() {
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
@@ -50,7 +57,8 @@ public class PlayerMovement : MonoBehaviour {
         if (!_rolling) {
             InputManagement();
             Movement();
-        } else {
+        } 
+        else {
             HandleRolling();
         }
 
@@ -65,12 +73,18 @@ public class PlayerMovement : MonoBehaviour {
         Vector3 targetPosition = _rollDirection * moveStep;
         _characterController.Move(targetPosition);
 
-        // Rotate the player to face the rolling direction
         if (_rollDirection != Vector3.zero) {
             Quaternion targetRotation = Quaternion.LookRotation(_rollDirection);
             targetRotation.x = 0.0f;
             targetRotation.z = 0.0f;
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+        
+        _rollTime += Time.deltaTime;
+
+        if (RequestedRoll && !_bufferedRoll && _rollTime >= allowableRollingBufferTime) {
+            Debug.Log("-- BUFFERED ROLL --");
+            _bufferedRoll = true;
         }
     }
 
@@ -85,7 +99,6 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         if (RequestedRoll && IsGrounded()) {
-            StartRolling();
             _animator.SetTrigger(RollingHash);
             return;
         }
@@ -124,7 +137,8 @@ public class PlayerMovement : MonoBehaviour {
                 _verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2);
                 _animator.SetTrigger(JumpHash);
             }
-        } else {
+        } 
+        else {
             _verticalVelocity -= gravity * Time.deltaTime;
         }
 
@@ -161,13 +175,18 @@ public class PlayerMovement : MonoBehaviour {
     public void StartRolling() {
         Debug.Log("StartRolling");
         _currentRollSpeed = IsRunning ? runningRollSpeed : rollSpeed;
-        _rolling = true;
         _rollDirection = cameraTransform.forward.normalized;
+        _rollTime = 0.0f;
+        _rolling = true;
     }
 
     public void StopRolling() {
         Debug.Log("StopRolling");
         _rolling = false;
+
+        if (!_bufferedRoll) return;
+        _animator.SetTrigger(RollingHash);
+        _bufferedRoll = false;
     }
 
     private void OnDrawGizmos() {
