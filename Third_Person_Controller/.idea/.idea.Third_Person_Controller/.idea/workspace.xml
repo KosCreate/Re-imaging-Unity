@@ -5,11 +5,179 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c95c5c87-15ff-4590-a8d0-cebee57c378d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/AStar_Playground.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AStar_Playground.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/OutdoorsScene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/OutdoorsScene.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Third_Person_Controller/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Third_Person_Controller/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Ground_Mat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Ground_Mat.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Player_Mat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Player_Mat.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Anim-Landing.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Anim-Landing.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/AI-Testing.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/AI-Testing/AI-Controller.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/AI-Testing/AI-Controller.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Falling Idle.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Falling Idle.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Falling To Landing.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Falling To Landing.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Female-Pirate-Anim-Controller.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Female-Pirate-Anim-Controller.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Draw A Great Sword 2.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Draw A Great Sword 2.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Great Sword Idle.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Great Sword Idle.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Great Sword Run.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Great Sword Run.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Great Sword Walk.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Great Sword Walk.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Idle.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Idle.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Pirate By P. Konstantinov@Draw A Great Sword 1.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Pirate By P. Konstantinov@Draw A Great Sword 1.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Pirate By P. Konstantinov@Draw A Great Sword 2.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Pirate By P. Konstantinov@Draw A Great Sword 2.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Pirate By P. Konstantinov@Sheath A Great Sword 1.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Pirate By P. Konstantinov@Sheath A Great Sword 1.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Pirate By P. Konstantinov@Sheath A Great Sword 2.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Pirate By P. Konstantinov@Sheath A Great Sword 2.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Run.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Run.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Sheath A Great Sword 2.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Sheath A Great Sword 2.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Sheathing Sword.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Sheathing Sword.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Stable Sword Inward Slash.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Stable Sword Inward Slash.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Stable Sword Outward Slash.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Stable Sword Outward Slash.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Walk.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Walk.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Withdrawing Sword.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/In-Combat/Withdrawing Sword.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Jumping Up.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Jumping Up.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Climbing Down.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Climbing Down.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Climbing_Up.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Climbing_Up.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Fast Run.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Fast Run.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Idle.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Idle.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/JumpOverObstacle.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/JumpOverObstacle.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Static-Climb-Down.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Static-Climb-Down.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Static-Climb-Down.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Static-Climb-Down.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Traversing-Climbing Down Wall.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Traversing-Climbing Down Wall.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Traversing-Climbing Up Wall.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Traversing-Climbing Up Wall.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Travesing_Down_Cliff.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Travesing_Down_Cliff.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Victory.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Victory.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Walking.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Walking.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Walking.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Walking.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Standing Dive Forward - Roll.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Standing Dive Forward - Roll.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Standing Dive Forward - Roll.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Standing Dive Forward - Roll.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Anim_Idle.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Anim_Idle.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Anim_Run.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Anim_Run.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Anim_Walk.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Anim_Walk.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Idle-Anim.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Idle-Anim.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Mutant-Anim-Controller.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Mutant-Anim-Controller.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Mutant-Landing-Anim.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Mutant-Landing-Anim.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Mutant-Run-Anim.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Mutant-Run-Anim.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Mutant-Walk-Anim.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Mutant-Walk-Anim.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Mutant@Falling Idle.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Mutant@Falling Idle.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Mutant@Jumping Up.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Mutant/Mutant@Jumping Up.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Erika.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Erika/Erika Archer.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Erika/Erika Archer.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Erika/textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Erika/textures/Erika_Archer_Clothes_diffuse.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Erika/textures/Erika_Archer_Clothes_diffuse.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Erika/textures/Erika_Archer_Clothes_normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Erika/textures/Erika_Archer_Clothes_normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Erika/textures/FemaleFitA_Body_diffuse.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Erika/textures/FemaleFitA_Body_diffuse.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Erika/textures/FemaleFitA_StdNM.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Erika/textures/FemaleFitA_StdNM.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Erika/textures/FemaleFitA_eyelash_diffuse.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Erika/textures/FemaleFitA_eyelash_diffuse.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Female_Pirate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Female_Pirate/Female_Pirate.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Female_Pirate/Female_Pirate.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Female_Pirate/default1.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Female_Pirate/default1.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Female_Pirate/textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Female_Pirate/textures/void_diffuse.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Female_Pirate/textures/void_diffuse.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Female_Pirate/textures/void_normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Female_Pirate/textures/void_normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Female_Pirate/textures/void_specular.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Female_Pirate/textures/void_specular.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Mutant.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Mutant/Mutant.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Mutant/Mutant.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Mutant/textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Mutant/textures/Mutant_diffuse.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Mutant/textures/Mutant_diffuse.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Mutant/textures/Mutant_normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Mutant/textures/Mutant_normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/AStar_Playground.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/AStar_Playground.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI_Testing.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI_Testing/Obstacle.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI_Testing/Obstacle.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI_Testing/TraversingAgent.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI_Testing/TraversingAgent.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraFollow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraFollow.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SkinnedMeshMerger.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SkinnedMeshMerger/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SkinnedMeshMerger/Editor/SkinnedMeshMergerEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SkinnedMeshMerger/Editor/SkinnedMeshMergerEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SkinnedMeshMerger/SkinnedMeshMerger.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SkinnedMeshMerger/SkinnedMeshMerger.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SkinnedMeshMerger/SkinnedMeshMerger.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SkinnedMeshMerger/SkinnedMeshMerger.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/texture_01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/texture_01.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/character 1.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/character 1/CH_ARM_Plain_01.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/character 1/CH_ARM_Plain_01.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/character 1/CH_FEET_Boots_01.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/character 1/CH_FEET_Boots_01.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/character 1/CH_Facial_01.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/character 1/CH_Facial_01.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/character 1/CH_Hair_01.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/character 1/CH_Hair_01.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/character 1/CH_character_01.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/character 1/CH_character_01.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +189,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraFollow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraTransparency.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EquipSystem.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -103,7 +272,7 @@
       <workItem from="1740040183915" duration="1803000" />
       <workItem from="1740043488175" duration="23155000" />
       <workItem from="1740127928164" duration="3829000" />
-      <workItem from="1740133208055" duration="2966000" />
+      <workItem from="1740133208055" duration="9872000" />
     </task>
     <servers />
   </component>

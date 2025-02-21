@@ -15,6 +15,7 @@ public class TraversingAgent : MonoBehaviour {
     private static readonly int TraversingCliffUpWardsHash = Animator.StringToHash("ShouldClimbUpWall");
     private static readonly int JumpOverObstacleHash = Animator.StringToHash("OverObstacle");
     private static readonly int JumpChasmHash = Animator.StringToHash("JumpChasm");
+    private static readonly int CrouchingHash = Animator.StringToHash("Crouching");
     private static readonly int WalkingHash = Animator.StringToHash("Walking");
     private static readonly int WonHash = Animator.StringToHash("Victory");
     private static readonly int LandHash = Animator.StringToHash("Land");
@@ -37,6 +38,11 @@ public class TraversingAgent : MonoBehaviour {
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private float jumpDuration = 0.75f;
     [SerializeField] private float obstacleClearance = 0.5f; // Distance past the obstacle to land
+
+    [Header("Crouch Detection")]
+    [SerializeField] private Transform head;
+    [SerializeField] private float crouchDetectionDistance;
+    [SerializeField] private LayerMask crouchDetectionLayers;
 
     private Vector3 _jumpStartPosition;
     private Vector3 _jumpTargetPosition;
@@ -75,10 +81,15 @@ public class TraversingAgent : MonoBehaviour {
 
     private bool _landed;
     private bool _jumping;
+    
+    // Cached crouch configs
+    private bool _isCrouching;
+    private float _originalHeight;
 
     private void Awake() {
         _followerEntity = GetComponent<FollowerEntity>();
         _animator = GetComponent<Animator>();
+        _originalHeight = _followerEntity.height;
         _landed = true;
     }
 
@@ -119,13 +130,39 @@ public class TraversingAgent : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        if (_endLevel) return;
+        
+        if (_followerEntity.remainingDistance <= 1) {
+            StartCoroutine(WaitAndEndLevel());
+            _endLevel = true;
+        }
+
         if (_jumping) {
             CheckLanding();
             return;
         }
         
+        HandleCrouching();
         CheckForJumpObstacles();
-        HandleClimbingDownwards();
+        CheckDownCliffs();
+
+        if (_isCrouching) { return; }
+        if (!_followerEntity.enabled) return;
+        
+        _animator.SetBool(WalkingHash, _followerEntity.remainingDistance > 1f && !_followerEntity.isStopped);
+    }
+
+    private void HandleCrouching() {
+        _isCrouching = DetectsCrouchObject();
+        
+        if (_isCrouching) {
+            _followerEntity.height = _originalHeight / 2;
+            _animator.SetBool(CrouchingHash, true);
+        }
+        else {
+            _followerEntity.height = _originalHeight;
+            _animator.SetBool(CrouchingHash, false);
+        }
     }
 
     private void CheckLanding() {
@@ -135,22 +172,6 @@ public class TraversingAgent : MonoBehaviour {
         
         _animator.SetTrigger(LandHash);
         _landed = true;
-    }
-
-    private void HandleClimbingDownwards() {
-        if (_endLevel) return;
-        CheckDownCliffs();
-
-         if (_followerEntity.enabled) {
-             _animator.SetBool(WalkingHash, _followerEntity.remainingDistance > 1f && !_followerEntity.isStopped);
-         }
-
-         if (_downACliff || _detectedWallOrObstacle) return;
-         
-         if (_followerEntity.remainingDistance <= 1) {
-             StartCoroutine(WaitAndEndLevel());
-             _endLevel = true;
-         }
     }
 
     private IEnumerator WaitAndEndLevel() {
@@ -315,6 +336,13 @@ public class TraversingAgent : MonoBehaviour {
         return Physics.CheckSphere(groundChecker.position, groundCheckRadius, groundLayer);
     }
 
+    private bool DetectsCrouchObject() {
+        bool frontDetection = Physics.Raycast(head.position, transform.forward, crouchDetectionDistance, crouchDetectionLayers);
+        bool upDetection = Physics.Raycast(transform.position + transform.up, transform.up, crouchDetectionDistance, crouchDetectionLayers);
+        
+        return frontDetection || upDetection;
+    }
+
     private Tuple<RaycastHit, bool> DetectingCliff() {
         bool hits = Physics.Raycast(transform.up + ForwardDirectionVector, Vector3.down, out var hit, Mathf.Infinity, cliffDetectionLayers);
         
@@ -360,6 +388,12 @@ public class TraversingAgent : MonoBehaviour {
         
         Gizmos.color = _landed ? Color.blue : Color.red;
         Gizmos.DrawRay(transform.position + transform.up * 0.5f, Vector3.down);
+
+        if (head != null) {
+            Gizmos.color = DetectsCrouchObject() ? Color.green : Color.red;
+            Gizmos.DrawRay(head.position, transform.forward * crouchDetectionDistance);
+            Gizmos.DrawRay(head.position, transform.up * crouchDetectionDistance);
+        }
         
         if (groundChecker == null) return;
         Gizmos.color = IsGrounded() ? Color.green : Color.red;
