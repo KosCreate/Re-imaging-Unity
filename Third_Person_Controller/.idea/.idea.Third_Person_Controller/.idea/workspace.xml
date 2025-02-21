@@ -8,10 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Third_Person_Controller/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Third_Person_Controller/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/AStar_Playground.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AStar_Playground.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/AI-Testing/AI-Controller.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/AI-Testing/AI-Controller.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Static-Climbing Down.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Static-Climbing Down.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Pirate By P. Konstantinov@Victory.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Pirate By P. Konstantinov@Victory.fbx.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI_Testing/TraversingAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI_Testing/TraversingAgent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +102,9 @@
       <workItem from="1739875961547" duration="15166000" />
       <workItem from="1739904460176" duration="53000" />
       <workItem from="1740040183915" duration="1803000" />
-      <workItem from="1740043488175" duration="18820000" />
+      <workItem from="1740043488175" duration="23155000" />
+      <workItem from="1740127928164" duration="3829000" />
+      <workItem from="1740133208055" duration="2088000" />
     </task>
     <servers />
   </component>

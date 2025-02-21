@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using AI_Testing;
 using Pathfinding;
+using Pathfinding.Examples;
 using UnityEngine;
 
 public class TraversingAgent : MonoBehaviour {
@@ -9,12 +10,14 @@ public class TraversingAgent : MonoBehaviour {
         Obstacle, Wall
     }
     
-    private static readonly int TraversingCliffDownwards = Animator.StringToHash("ShouldClimbDownCliff");
-    private static readonly int StartTraversingCliffDownwards = Animator.StringToHash("StartTraversingDown");
-    private static readonly int TraversingCliffUpWards = Animator.StringToHash("ShouldClimbUpWall");
-    private static readonly int JumpOverObstacle = Animator.StringToHash("OverObstacle");
+    private static readonly int StartTraversingCliffDownwardsHash = Animator.StringToHash("StartTraversingDown");
+    private static readonly int TraversingCliffDownwardsHash = Animator.StringToHash("ShouldClimbDownCliff");
+    private static readonly int TraversingCliffUpWardsHash = Animator.StringToHash("ShouldClimbUpWall");
+    private static readonly int JumpOverObstacleHash = Animator.StringToHash("OverObstacle");
+    private static readonly int JumpChasmHash = Animator.StringToHash("JumpChasm");
     private static readonly int WalkingHash = Animator.StringToHash("Walking");
     private static readonly int WonHash = Animator.StringToHash("Victory");
+    private static readonly int LandHash = Animator.StringToHash("Land");
 
     [Header("Climb Down Cliff Configs")]
     [SerializeField] private Transform groundChecker;
@@ -70,15 +73,68 @@ public class TraversingAgent : MonoBehaviour {
 
     private bool _endLevel;
 
+    private bool _landed;
+    private bool _jumping;
+
     private void Awake() {
         _followerEntity = GetComponent<FollowerEntity>();
         _animator = GetComponent<Animator>();
-        //_animator.SetBool(WalkingHash, true);
+        _landed = true;
+    }
+
+    private void OnEnable() {
+        FollowerJumpLink.OnStartOffMeshLink += OnStartOffMeshLink;
+        FollowerJumpLink.OnEndOffMeshLink += OnEndOffMeshLink;
+    }
+
+    private void OnDisable() {
+        FollowerJumpLink.OnStartOffMeshLink -= OnStartOffMeshLink;
+        FollowerJumpLink.OnEndOffMeshLink -= OnEndOffMeshLink;
+    }
+
+    private void OnStartOffMeshLink() {
+        _jumping = true;
+        _animator.SetBool(WalkingHash, false);
+        _animator.SetTrigger(JumpChasmHash);
+        StartCoroutine(SetLanding());
+    }
+
+    private IEnumerator SetLanding() {
+        yield return new WaitForSeconds(0.05f);
+        _landed = false;
+    }
+
+    private void OnEndOffMeshLink() {
+        // Disable agent
+        // Play animation
+        // enable agent again
+        StartCoroutine(LandAndContinue());
+    }
+
+    private IEnumerator LandAndContinue() {
+        _followerEntity.isStopped = true;
+        yield return new WaitForSeconds(0.6f);
+        _followerEntity.isStopped = false;
+        _jumping = false;
     }
 
     private void FixedUpdate() {
+        if (_jumping) {
+            CheckLanding();
+            return;
+        }
+        
         CheckForJumpObstacles();
         HandleClimbingDownwards();
+    }
+
+    private void CheckLanding() {
+        if (_landed) return;
+        
+        if (!Physics.Raycast(transform.position + transform.up * 0.5f, Vector3.down, 2.0f, groundLayer)) return;
+        
+        _animator.SetTrigger(LandHash);
+        _landed = true;
     }
 
     private void HandleClimbingDownwards() {
@@ -86,9 +142,11 @@ public class TraversingAgent : MonoBehaviour {
         CheckDownCliffs();
 
          if (_followerEntity.enabled) {
-             _animator.SetBool(WalkingHash, _followerEntity.remainingDistance > 1f);
+             _animator.SetBool(WalkingHash, _followerEntity.remainingDistance > 1f && !_followerEntity.isStopped);
          }
 
+         if (_downACliff || _detectedWallOrObstacle) return;
+         
          if (_followerEntity.remainingDistance <= 1) {
              StartCoroutine(WaitAndEndLevel());
              _endLevel = true;
@@ -160,7 +218,7 @@ public class TraversingAgent : MonoBehaviour {
                 // Adjust jump to go towards the agent's facing direction instead of the obstacle's forward direction
                 _jumpTargetPosition = transform.position + transform.forward * (Vector3.Distance(transform.position, _overObstaclePosition) + obstacleClearance);
                 _jumpProgress = 0f;
-                _animator.SetTrigger(JumpOverObstacle);
+                _animator.SetTrigger(JumpOverObstacleHash);
             });
         }
         else {
@@ -192,13 +250,13 @@ public class TraversingAgent : MonoBehaviour {
                 Quaternion lookRotation = Quaternion.LookRotation(directionToWall, Vector3.up);
                 transform.rotation = lookRotation;
 
-                _animator.SetBool(TraversingCliffUpWards, true);
+                _animator.SetBool(TraversingCliffUpWardsHash, true);
                 _reachedObstacle = true;
             });
         }
         else {
             MoveToVerticalPosition(_wallDestinationPosition, () => {
-                _animator.SetBool(TraversingCliffUpWards, false);
+                _animator.SetBool(TraversingCliffUpWardsHash, false);
                 _reachedObstacle = false;
                 _detectedWallOrObstacle = false;
                 _currentObstacle.Traversed = true;
@@ -236,8 +294,8 @@ public class TraversingAgent : MonoBehaviour {
             MoveToPosition(_currentTargetPosition, () => {
                 Quaternion lookRotation = Quaternion.LookRotation(-_approachDirection, Vector3.up);
                 transform.rotation = lookRotation;
-                _animator.SetTrigger(StartTraversingCliffDownwards);
-                _animator.SetBool(TraversingCliffDownwards, true);
+                _animator.SetTrigger(StartTraversingCliffDownwardsHash);
+                _animator.SetBool(TraversingCliffDownwardsHash, true);
                 _reachedCliffStartingPosition = true;
             });
         }
@@ -246,8 +304,8 @@ public class TraversingAgent : MonoBehaviour {
             MoveToVerticalPosition(_cliffDestinationPosition, () => {
                 _downACliff = false;
                 _reachedCliffStartingPosition = false;
-                _animator.SetBool(TraversingCliffDownwards, false);
-                _animator.ResetTrigger(StartTraversingCliffDownwards);
+                _animator.SetBool(TraversingCliffDownwardsHash, false);
+                _animator.ResetTrigger(StartTraversingCliffDownwardsHash);
                 _followerEntity.enabled = true;
             });
         }
@@ -289,18 +347,19 @@ public class TraversingAgent : MonoBehaviour {
         
         Gizmos.color = wallCheckTuple.Item2 ? Color.green : Color.red;
         Gizmos.DrawLine(OriginPosition, OriginPosition + transform.forward * obstacleCheckDistance);
+
         
         Gizmos.color = cliffCheckTuple.Item2 ? Color.green : Color.red;
         Gizmos.DrawLine(transform.up + ForwardDirectionVector, ForwardDirectionVector + Vector3.down * 100.0f);
-        
-        if (cliffCheckTuple.Item2) {
-            Gizmos.DrawSphere(cliffCheckTuple.Item1.point, 0.1f);
-        }
+        Gizmos.DrawSphere(cliffCheckTuple.Item1.point, 0.1f);
         
         if (_detectedWallOrObstacle) {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(_wallDestinationPosition, _obstacleClass == ObstacleClass.Wall ? 1 : 0.0f);
+            Gizmos.DrawSphere(_wallDestinationPosition, _obstacleClass == ObstacleClass.Wall ? 0.1f : 0.0f);
         }
+        
+        Gizmos.color = _landed ? Color.blue : Color.red;
+        Gizmos.DrawRay(transform.position + transform.up * 0.5f, Vector3.down);
         
         if (groundChecker == null) return;
         Gizmos.color = IsGrounded() ? Color.green : Color.red;
