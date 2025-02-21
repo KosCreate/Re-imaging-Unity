@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c95c5c87-15ff-4590-a8d0-cebee57c378d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Third_Person_Controller/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Third_Person_Controller/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AStar_Playground.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AStar_Playground.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/AI-Testing/AI-Controller.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/AI-Testing/AI-Controller.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Pirate By P. Konstantinov@Victory.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Animations/Femaie_Pirate/Out-Of-Combat/Pirate By P. Konstantinov@Victory.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI_Testing/TraversingAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI_Testing/TraversingAgent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AStar_Playground.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AStar_Playground.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/OutdoorsScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/OutdoorsScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +103,7 @@
       <workItem from="1740040183915" duration="1803000" />
       <workItem from="1740043488175" duration="23155000" />
       <workItem from="1740127928164" duration="3829000" />
-      <workItem from="1740133208055" duration="2088000" />
+      <workItem from="1740133208055" duration="2966000" />
     </task>
     <servers />
   </component>
