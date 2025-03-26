@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c95c5c87-15ff-4590-a8d0-cebee57c378d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Third_Person_Controller/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Third_Person_Controller/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AI_Traversal/AStar_Playground.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AI_Traversal/AStar_Playground.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AI_Traversal/Models/Animations/Femaie_Pirate/Female-Pirate-Anim-Controller.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AI_Traversal/Models/Animations/Femaie_Pirate/Female-Pirate-Anim-Controller.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/OutdoorsScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/OutdoorsScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EquipSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EquipSystem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +105,8 @@
       <workItem from="1740040183915" duration="1803000" />
       <workItem from="1740043488175" duration="23155000" />
       <workItem from="1740127928164" duration="3829000" />
-      <workItem from="1740133208055" duration="13070000" />
+      <workItem from="1740133208055" duration="20226000" />
+      <workItem from="1740478302163" duration="1554000" />
     </task>
     <servers />
   </component>

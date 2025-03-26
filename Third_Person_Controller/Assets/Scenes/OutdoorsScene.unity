@@ -7808,6 +7808,7 @@ MonoBehaviour:
   rollSpeed: 5
   runningRollSpeed: 7
   allowableRollingBufferTime: 0.5
+  landingDistance: 1.5
 --- !u!95 &1401930550
 Animator:
   serializedVersion: 7
@@ -7845,6 +7846,7 @@ MonoBehaviour:
   weaponHolder: {fileID: 1449917440}
   sheathHolder: {fileID: 1850554331}
   dummyWeapon: {fileID: 3141012577762240720, guid: 61d09f7758631e14d8f8f65f65025734, type: 3}
+  layerTransition: 1
 --- !u!1 &1449917439
 GameObject:
   m_ObjectHideFlags: 0

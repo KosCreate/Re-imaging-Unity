@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
@@ -24,6 +21,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float rollSpeed = 10.0f;
     [SerializeField] private float runningRollSpeed = 8.0f;
     [SerializeField] private float allowableRollingBufferTime = 1.0f;
+    [SerializeField] private float landingDistance = 1.5f;
 
     private float _moveInput;
     private float _turnInput;
@@ -41,6 +39,7 @@ public class PlayerMovement : MonoBehaviour {
     private bool IsMoving => _moveInput != 0 || _turnInput != 0;
     private bool RequestedRoll => Input.GetKeyDown(KeyCode.Q);
     private bool IsRunning => Input.GetKey(KeyCode.LeftShift);
+    private bool RequestedJump => Input.GetButtonDown("Jump");
     
     private bool _rolling;
     private Vector3 _rollDirection;
@@ -103,6 +102,15 @@ public class PlayerMovement : MonoBehaviour {
             return;
         }
 
+        // if (!_landed) {
+        //     _onAirTime += Time.deltaTime;
+        //     
+        //     if (_onAirTime >= 0.1f && ShouldLand()) {
+        //         _animator.SetTrigger(LandingHash);
+        //         _landed = true;
+        //     }
+        // }
+
         var move = new Vector3(_turnInput, 0f, _moveInput).normalized;
         move = cameraTransform.transform.TransformDirection(move);
         move.y = VerticalForceCalculation();
@@ -132,13 +140,19 @@ public class PlayerMovement : MonoBehaviour {
     private float VerticalForceCalculation() {
         if (IsGrounded()) {
             _verticalVelocity = -1f;
-
-            if (Input.GetButtonDown("Jump")) {
+            
+            if (RequestedJump) {
                 _verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2);
                 _animator.SetTrigger(JumpHash);
             }
         } 
         else {
+            // if (_landed) {
+            //     _animator.ResetTrigger(LandingHash);
+            //     _onAirTime = 0.0f;
+            //     _landed = false;
+            // }
+            
             _verticalVelocity -= gravity * Time.deltaTime;
         }
 
@@ -159,6 +173,10 @@ public class PlayerMovement : MonoBehaviour {
 
     private bool IsGrounded() {
         return Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+    }
+
+    private bool ShouldLand() {
+        return Physics.Raycast(groundCheck.position + transform.up, Vector3.down, landingDistance, groundLayer);
     }
 
     private void InputManagement() {
@@ -194,5 +212,8 @@ public class PlayerMovement : MonoBehaviour {
 
         Gizmos.color = IsGrounded() ? Color.green : Color.red;
         Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
+        
+        Gizmos.color = ShouldLand() ? Color.green : Color.red;
+        Gizmos.DrawRay(groundCheck.position + transform.up, Vector3.down * landingDistance);
     }
 }
