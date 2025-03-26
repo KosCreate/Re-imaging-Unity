@@ -30,7 +30,6 @@ public class EquipSystem : MonoBehaviour {
         _currentWeaponInSheath = sheathHolder.GetChild(0).gameObject;
     }
 
-    // TODO:: CHECK IF THE ANIMATION FOR EACH CASE HAS FINISHED - IF THAT'S NOT THE CASE YIELD UNTIL THAT HAPPENS
     private void Update() {
         if (!WantsToEquipWeapon) return;
         
